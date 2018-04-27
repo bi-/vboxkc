@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# http://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 
 declare -A KEYMAP
 KEYMAP[-]=0C
@@ -64,7 +65,6 @@ RELEASE[z]=AC
 RELEASE[enter]=9C
 RELEASE[/]=B5
 
-
 msg() {
   input=$1
   for (( i=0; i<${#input}; i++ )); do
@@ -90,6 +90,6 @@ release() {
 press() {
   echo -n ${KEYMAP[$1]}
 }
-msg=$(msg "${2}")$(enter)
 
+msg=$(msg "${2}")$(enter)
 echo VBoxManage controlvm ${1} keyboardputscancode ${msg} 
